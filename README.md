@@ -40,6 +40,14 @@ XAML:
 </ContentPage>
 ```
 
+## Get Started
+
+Download nuget package.
+
+```
+Install-Package KMY.PCLThinCanvas
+```
+
 ## Properties
 
 |Class Name|LineColor|LineWidth|LineCap|LineStyle|LineDirection|CornerRadiusSize|FillColor|
