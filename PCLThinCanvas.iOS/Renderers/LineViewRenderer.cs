@@ -16,6 +16,15 @@ namespace PCLThinCanvas.iOS.Renderers
 {
 	public class LineViewRenderer : BoxRenderer
 	{
+		protected override void OnElementChanged(ElementChangedEventArgs<BoxView> e)
+		{
+			base.OnElementChanged(e);
+			if (e.NewElement != null)
+			{
+				e.NewElement.PropertyChanged += (sender, ev) => this.SetNeedsDisplay();
+			}
+		}
+
 		public override void Draw(CGRect rect)
 		{
 			var xfview = (LineView)Element;

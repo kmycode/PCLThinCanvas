@@ -13,6 +13,7 @@ namespace PCLThinCanvas.Sample
 		public MainPage()
 		{
 			InitializeComponent();
+			this.BindingContext = new TestModel();
 		}
 	}
 }

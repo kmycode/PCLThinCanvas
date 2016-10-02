@@ -22,11 +22,10 @@ namespace PCLThinCanvas.Views
 			null,
 			(bindable, oldValue, newValue) =>
 			{
-				var view = bindable as ListView;
+				var view = bindable as SquareView;
 				if (view != null)
 				{
-					view.BeginRefresh();
-					view.EndRefresh();
+					view.OnPropertyChanged();
 				}
 			},
 			null,
@@ -53,11 +52,10 @@ namespace PCLThinCanvas.Views
 			null,
 			(bindable, oldValue, newValue) =>
 			{
-				var view = bindable as ListView;
+				var view = bindable as SquareView;
 				if (view != null)
 				{
-					view.BeginRefresh();
-					view.EndRefresh();
+					view.OnPropertyChanged();
 				}
 			},
 			null,
@@ -84,11 +82,10 @@ namespace PCLThinCanvas.Views
 			null,
 			(bindable, oldValue, newValue) =>
 			{
-				var view = bindable as ListView;
+				var view = bindable as SquareView;
 				if (view != null)
 				{
-					view.BeginRefresh();
-					view.EndRefresh();
+					view.OnPropertyChanged();
 				}
 			},
 			null,
@@ -115,11 +112,10 @@ namespace PCLThinCanvas.Views
 			null,
 			(bindable, oldValue, newValue) =>
 			{
-				var view = bindable as ListView;
+				var view = bindable as SquareView;
 				if (view != null)
 				{
-					view.BeginRefresh();
-					view.EndRefresh();
+					view.OnPropertyChanged();
 				}
 			},
 			null,
@@ -146,11 +142,10 @@ namespace PCLThinCanvas.Views
 			null,
 			(bindable, oldValue, newValue) =>
 			{
-				var view = bindable as ListView;
+				var view = bindable as SquareView;
 				if (view != null)
 				{
-					view.BeginRefresh();
-					view.EndRefresh();
+					view.OnPropertyChanged();
 				}
 			},
 			null,
@@ -177,11 +172,10 @@ namespace PCLThinCanvas.Views
 			null,
 			(bindable, oldValue, newValue) =>
 			{
-				var view = bindable as ListView;
+				var view = bindable as SquareView;
 				if (view != null)
 				{
-					view.BeginRefresh();
-					view.EndRefresh();
+					view.OnPropertyChanged();
 				}
 			},
 			null,

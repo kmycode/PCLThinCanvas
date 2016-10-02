@@ -22,6 +22,15 @@ namespace PCLThinCanvas.Droid.Renderers
 {
 	class EllipseViewRenderer : BoxRenderer
 	{
+		protected override void OnElementChanged(ElementChangedEventArgs<BoxView> e)
+		{
+			base.OnElementChanged(e);
+			if (e.NewElement != null)
+			{
+				e.NewElement.PropertyChanged += (sender, ev) => this.Invalidate();
+			}
+		}
+
 		public override void Draw(Canvas canvas)
 		{
 			var xfview = (EllipseView)this.Element;
