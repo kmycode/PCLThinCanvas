@@ -64,6 +64,8 @@ namespace PCLThinCanvas.Droid.Renderers
 			// ü‚ğ•`‰æ
 			using (var paint = new Paint())
 			{
+				paint.AntiAlias = xfview.IsAntiAlias;
+
 				paint.Color = xfview.LineColor.ToAndroid();
 				paint.StrokeWidth = (float)(xfview.LineWidth * expand);
 				RendererUtil.SetCap(paint, xfview.LineCap);

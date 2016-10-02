@@ -159,5 +159,35 @@ namespace PCLThinCanvas.Views
 			get { return (LineDirection)this.GetValue(LineDirectionProperty); }
 			set { this.SetValue(LineDirectionProperty, value); }
 		}
+
+		/// <summary>
+		/// アンチエイリアス プロパティ
+		/// </summary>
+		public static readonly BindableProperty IsAntiAliasProperty = BindableProperty.Create(
+			"IsAntiAlias",
+			typeof(bool),
+			typeof(LineView),
+			false,
+			BindingMode.OneWay,
+			null,
+			(bindable, oldValue, newValue) =>
+			{
+				var view = bindable as LineView;
+				if (view != null)
+				{
+					view.OnPropertyChanged();
+				}
+			},
+			null,
+			null);
+
+		/// <summary>
+		/// アンチエイリアス プロパティ
+		/// </summary>
+		public bool IsAntiAlias
+		{
+			get { return (bool)this.GetValue(IsAntiAliasProperty); }
+			set { this.SetValue(IsAntiAliasProperty, value); }
+		}
 	}
 }

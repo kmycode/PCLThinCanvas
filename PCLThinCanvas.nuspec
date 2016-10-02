@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>KMY.PCLThinCanvas</id>
-    <version>0.1.1</version>
+    <version>0.2.0</version>
     <title>PCLThinCanvas for Xamarin.Forms (Android/iOS)</title>
     <authors>KMY</authors>
     <owners>KMY</owners>
@@ -12,6 +12,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <copyright>2016 KMY</copyright>
     <releaseNotes>
+0.2.0 (10/02/2016)
+ - Add PolygonView
+
 0.1.1 (10/02/2016)
  - Bug fix: no redraw when property changed
 

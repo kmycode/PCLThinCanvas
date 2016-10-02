@@ -38,6 +38,7 @@
     <Compile Include="DummyClassForLoadAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\EllipseView.cs" />
+    <Compile Include="Views\PolygonView.cs" />
     <Compile Include="Views\SquareView.cs" />
     <Compile Include="Views\LineView.cs" />
   </ItemGroup>

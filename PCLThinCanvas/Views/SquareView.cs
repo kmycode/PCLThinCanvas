@@ -16,7 +16,7 @@ namespace PCLThinCanvas.Views
 		public static readonly BindableProperty LineColorProperty = BindableProperty.Create(
 			"LineColor",
 			typeof(Color),
-			typeof(LineView),
+			typeof(SquareView),
 			default(Color),
 			BindingMode.OneWay,
 			null,
@@ -46,7 +46,7 @@ namespace PCLThinCanvas.Views
 		public static readonly BindableProperty LineWidthProperty = BindableProperty.Create(
 			"LineWidth",
 			typeof(double),
-			typeof(LineView),
+			typeof(SquareView),
 			1.0,
 			BindingMode.OneWay,
 			null,
@@ -76,7 +76,7 @@ namespace PCLThinCanvas.Views
 		public static readonly BindableProperty CornerRadiusSizeProperty = BindableProperty.Create(
 			"CornerRadiusSize",
 			typeof(double),
-			typeof(LineView),
+			typeof(SquareView),
 			0.0,
 			BindingMode.OneWay,
 			null,
@@ -106,7 +106,7 @@ namespace PCLThinCanvas.Views
 		public static readonly BindableProperty LineCapProperty = BindableProperty.Create(
 			"LineCap",
 			typeof(LineCap),
-			typeof(LineView),
+			typeof(SquareView),
 			default(LineCap),
 			BindingMode.OneWay,
 			null,
@@ -136,7 +136,7 @@ namespace PCLThinCanvas.Views
 		public static readonly BindableProperty LineStyleProperty = BindableProperty.Create(
 			"LineStyle",
 			typeof(LineStyle),
-			typeof(LineView),
+			typeof(SquareView),
 			default(LineStyle),
 			BindingMode.OneWay,
 			null,
@@ -166,7 +166,7 @@ namespace PCLThinCanvas.Views
 		public static readonly BindableProperty FillColorProperty = BindableProperty.Create(
 			"FillColor",
 			typeof(Color),
-			typeof(LineView),
+			typeof(SquareView),
 			default(Color),
 			BindingMode.OneWay,
 			null,
@@ -188,6 +188,36 @@ namespace PCLThinCanvas.Views
 		{
 			get { return (Color)this.GetValue(FillColorProperty); }
 			set { this.SetValue(FillColorProperty, value); }
+		}
+
+		/// <summary>
+		/// アンチエイリアス プロパティ
+		/// </summary>
+		public static readonly BindableProperty IsAntiAliasProperty = BindableProperty.Create(
+			"IsAntiAlias",
+			typeof(bool),
+			typeof(SquareView),
+			false,
+			BindingMode.OneWay,
+			null,
+			(bindable, oldValue, newValue) =>
+			{
+				var view = bindable as SquareView;
+				if (view != null)
+				{
+					view.OnPropertyChanged();
+				}
+			},
+			null,
+			null);
+
+		/// <summary>
+		/// アンチエイリアス プロパティ
+		/// </summary>
+		public bool IsAntiAlias
+		{
+			get { return (bool)this.GetValue(IsAntiAliasProperty); }
+			set { this.SetValue(IsAntiAliasProperty, value); }
 		}
 	}
 }
