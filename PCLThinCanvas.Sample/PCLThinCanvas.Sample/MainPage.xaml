@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tc="clr-namespace:PCLThinCanvas.Views;assembly=PCLThinCanvas"
+             x:Class="PCLThinCanvas.Sample.MainPage">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition Height="auto"/>
+      <RowDefinition/>
+      <RowDefinition/>
+      <RowDefinition/>
+    </Grid.RowDefinitions>
+    <tc:LineView LineColor="Blue" LineDirection="LeftToRight"/>
+    <tc:LineView LineColor="Purple" LineDirection="RightToLeft"/>
+    <tc:LineView LineColor="Yellow" LineCap="Square" LineWidth="3" LineStyle="Dashed" HeightRequest="1" Grid.Row="1"/>
+    <tc:SquareView LineColor="Green" FillColor="Green" Grid.Row="2"/>
+    <tc:SquareView LineColor="Red" FillColor="Pink" LineCap="Round" LineWidth="6" CornerRadiusSize="24" LineStyle="Dotted" Grid.Row="3"/>
+    <tc:EllipseView LineColor="Blue" FillColor="White" LineWidth="10" Grid.Row="4"/>
+  </Grid>
+</ContentPage>
