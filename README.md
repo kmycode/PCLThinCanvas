@@ -4,7 +4,7 @@ This supports only following:
 
 |Class Name|Description|
 |---|---|
-|LineView|Draw line|
+|LineView|Draw diagonal line. If rect width or height is less than line-width, it became vertical or horizontal line.|
 |SquareView|Draw Square|
 |EllipseView|Draw Ellipse|
 
