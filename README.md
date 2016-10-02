@@ -7,6 +7,7 @@ This supports only following:
 |LineView|Draw diagonal line. If rect width or height is less than line-width, it became vertical or horizontal line.|
 |SquareView|Draw Square|
 |EllipseView|Draw Ellipse|
+|PolygonView|Draw Polygon|
 
 One instance draw one graphic. To combine some graphics, use overlayable class such as AbstractLayout, RelativeLayout or Grid.
 
@@ -50,11 +51,48 @@ Install-Package KMY.PCLThinCanvas
 
 ## Properties
 
-|Class Name|LineColor|LineWidth|LineCap|LineStyle|LineDirection|CornerRadiusSize|FillColor|
-|---|---|---|---|---|---|---|---|
-|LineView|○|○|○|○|○|||
-|SquareView|○|○||○||○|○|
-|EllipseView|○|○||○|||○|
+|-|LineView|SquareView|EllipseView|PolygonView|
+|---|---|---|---|---|
+|IsAntiAlias ※1|○|○|○|○|
+|LineColor|○|○|○|○|
+|LineWidth|○|○|○|○|
+|LineCap|○|||○|
+|LineStyle|○|○|○|○|
+|LineDirection|○||||
+|LineJoin||||○|
+|IsClosed||||○|
+|Positions||||○|
+|IsRelativePositions||||○|
+|CornerRadiusSize||○|||
+|FillColor||○|○|○|
+
+※1: Android only
+
+### How to draw polygon
+
+Create a collection to input polygon path points (relative: 0 <= point <= 1).
+Next, set the collection to PolygonView.Positions.
+
+```csharp
+ObservableCollection<IPoint> positions = new ObservableCollection<IPoint>();
+positions.Add(new PCLThinCanvas.Core.Point { Top = 0.2, Left = 0.5 });
+positions.Add(new PCLThinCanvas.Core.Point { Top = 0.8, Left = 0.8 });
+positions.Add(new PCLThinCanvas.Core.Point { Top = 0.8, Left = 0.2 });
+this.Polygon.Positions = positions;
+```
+
+If PolygonView.IsRelativePosition == false, you can set abstract points.
+
+```csharp
+ObservableCollection<IPoint> positions = new ObservableCollection<IPoint>();
+positions.Add(new PCLThinCanvas.Core.Point { Top = 40, Left = 100 });
+positions.Add(new PCLThinCanvas.Core.Point { Top = 160, Left = 160 });
+positions.Add(new PCLThinCanvas.Core.Point { Top = 160, Left = 40 });
+this.Polygon.IsRelativePosition = false;
+this.Polygon.Positions = positions;
+```
+
+## Enums
 
 ### LineCap
 
@@ -79,6 +117,19 @@ default: Solid
 		Solid,
 		Dotted,
 		Dashed,
+	}
+```
+
+### LineJoin
+
+default: Bevel
+
+```csharp
+	public enum LineJoin
+	{
+		Bevel,
+		Miter,
+		Round,
 	}
 ```
 
