@@ -105,7 +105,27 @@ namespace PCLThinCanvas.iOS.Renderers
 			}
 
 			context.AddPath(path);
-			context.DrawPath(CGPathDrawingMode.FillStroke);
+
+			if (xfview.FillImageSource == null)
+			{
+				context.DrawPath(CGPathDrawingMode.FillStroke);
+			}
+			else
+			{
+				var fullRect = new CGRect(0, 0, xfview.Width, xfview.Height);
+				RendererUtil.DrawMaskedImage(context, fullRect, (ct) =>
+				{
+					UIColor.White.SetFill();
+					ct.FillRect(fullRect);
+					ct.SetLineWidth(0);
+					ct.SetFillColor(UIColor.Black.CGColor);
+					ct.AddPath(path);
+					ct.DrawPath(CGPathDrawingMode.FillStroke);
+				}, xfview.FillImageSource, (float)xfview.Width, (float)xfview.Height);
+
+				// ògê¸ïîï™
+				context.DrawPath(CGPathDrawingMode.Stroke);
+			}
 		}
 	}
 }

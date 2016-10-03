@@ -47,12 +47,28 @@ namespace PCLThinCanvas.Droid.Renderers
 
 				paint.StrokeWidth = (float)(xfview.LineWidth * expand);
 				RendererUtil.SetCap(paint, xfview.LineCap);
-				this.SetLayerType(RendererUtil.SetStyle(paint, xfview.LineStyle, xfview.LineWidth, expand), paint);
+
+				var layerType = RendererUtil.SetStyle(paint, xfview.LineStyle, xfview.LineWidth, expand);
+				if (xfview.FillImageSource != null)
+				{
+					layerType = LayerType.Software;
+				}
+				this.SetLayerType(layerType, paint);
 
 				// ìhÇËÇ¬Ç‘Çµ
 				paint.SetStyle(Paint.Style.Fill);
 				paint.Color = xfview.FillColor.ToAndroid();
-				canvas.DrawRoundRect(rect, (float)(xfview.CornerRadiusSize * expand), (float)(xfview.CornerRadiusSize * expand), paint);
+				if (xfview.FillImageSource == null)
+				{
+					canvas.DrawRoundRect(rect, (float)(xfview.CornerRadiusSize * expand), (float)(xfview.CornerRadiusSize * expand), paint);
+				}
+				else
+				{
+					RendererUtil.DrawMaskedImage(canvas, (cv, pt) =>
+					{
+						cv.DrawRoundRect(rect, (float)(xfview.CornerRadiusSize * expand), (float)(xfview.CornerRadiusSize * expand), pt);
+					}, paint, xfview.FillImageSource, this, (float)expand);
+				}
 
 				// ê¸
 				paint.SetStyle(Paint.Style.Stroke);

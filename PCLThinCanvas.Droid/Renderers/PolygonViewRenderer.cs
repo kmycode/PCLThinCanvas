@@ -44,7 +44,13 @@ namespace PCLThinCanvas.Droid.Renderers
 
 				paint.StrokeWidth = (float)(xfview.LineWidth * expand);
 				RendererUtil.SetCap(paint, xfview.LineCap);
-				this.SetLayerType(RendererUtil.SetStyle(paint, xfview.LineStyle, xfview.LineWidth, expand), paint);
+
+				var layerType = RendererUtil.SetStyle(paint, xfview.LineStyle, xfview.LineWidth, expand);
+				if (xfview.FillImageSource != null)
+				{
+					layerType = LayerType.Software;
+				}
+				this.SetLayerType(layerType, paint);
 
 				// ê⁄ë±ïîå`èÛ
 				switch (xfview.LineJoin)
@@ -64,7 +70,17 @@ namespace PCLThinCanvas.Droid.Renderers
 				// ìhÇËÇ¬Ç‘Çµ
 				paint.Color = xfview.FillColor.ToAndroid();
 				paint.SetStyle(Paint.Style.Fill);
-				this.DrawPolygon(canvas, paint, xfview, expand);
+				if (xfview.FillImageSource == null)
+				{
+					this.DrawPolygon(canvas, paint, xfview, expand);
+				}
+				else
+				{
+					RendererUtil.DrawMaskedImage(canvas, (cv, pt) =>
+					{
+						this.DrawPolygon(cv, pt, xfview, expand);
+					}, paint, xfview.FillImageSource, this, (float)expand);
+				}
 
 				// ògê¸
 				paint.Color = xfview.LineColor.ToAndroid();
@@ -82,6 +98,8 @@ namespace PCLThinCanvas.Droid.Renderers
 				// ëäëŒç¿ïWéwíË
 				if (xfview.IsRelativePositions)
 				{
+					var rect = new Rect(0, 0, this.Width, this.Height);
+
 					bool isFirst = true;
 					foreach (var pos in xfview.Positions)
 					{

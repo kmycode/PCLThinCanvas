@@ -41,9 +41,30 @@ namespace PCLThinCanvas.iOS.Renderers
 				context.SetLineWidth((nfloat)xfview.LineWidth);
 				RendererUtil.SetCap(context, xfview.LineCap);
 				RendererUtil.SetStyle(context, xfview.LineStyle, xfview.LineWidth);
-				
-				context.AddPath(CGPath.FromRoundedRect(new CGRect(startx, starty, endx - startx, endy - starty), (nfloat)xfview.CornerRadiusSize, (nfloat)xfview.CornerRadiusSize));
-				context.DrawPath(CGPathDrawingMode.FillStroke);
+
+				var path = CGPath.FromRoundedRect(new CGRect(startx, starty, endx - startx, endy - starty), (nfloat)xfview.CornerRadiusSize, (nfloat)xfview.CornerRadiusSize);
+				context.AddPath(path);
+
+				if (xfview.FillImageSource == null)
+				{
+					context.DrawPath(CGPathDrawingMode.FillStroke);
+				}
+				else
+				{
+					var fullRect = new CGRect(0, 0, xfview.Width, xfview.Height);
+					RendererUtil.DrawMaskedImage(context, fullRect, (ct) =>
+					{
+						UIColor.White.SetFill();
+						ct.FillRect(fullRect);
+						ct.SetLineWidth(0);
+						ct.SetFillColor(UIColor.Black.CGColor);
+						ct.AddPath(path);
+						ct.DrawPath(CGPathDrawingMode.FillStroke);
+					}, xfview.FillImageSource, (float)xfview.Width, (float)xfview.Height);
+
+					// ògê¸ïîï™
+					context.DrawPath(CGPathDrawingMode.Stroke);
+				}
 			}
 		}
 	}

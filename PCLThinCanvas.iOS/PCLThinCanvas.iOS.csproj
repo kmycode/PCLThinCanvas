@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\EllipseViewRenderer.cs" />
     <Compile Include="Renderers\PolygonViewRenderer.cs" />
+    <Compile Include="Renderers\ImageViewRenderer.cs" />
     <Compile Include="Renderers\SquareViewRenderer.cs" />
     <Compile Include="Renderers\LineViewRenderer.cs" />
     <Compile Include="Renderers\RendererUtil.cs" />

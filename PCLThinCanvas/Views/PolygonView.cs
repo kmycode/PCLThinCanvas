@@ -192,6 +192,36 @@ namespace PCLThinCanvas.Views
 		}
 
 		/// <summary>
+		/// 塗りつぶし画像 プロパティ
+		/// </summary>
+		public static readonly BindableProperty FillImageSourceProperty = BindableProperty.Create(
+			"FillImageSource",
+			typeof(ImageSource),
+			typeof(PolygonView),
+			default(ImageSource),
+			BindingMode.OneWay,
+			null,
+			(bindable, oldValue, newValue) =>
+			{
+				var view = bindable as PolygonView;
+				if (view != null)
+				{
+					view.OnPropertyChanged();
+				}
+			},
+			null,
+			null);
+
+		/// <summary>
+		/// 塗りつぶし画像 プロパティ
+		/// </summary>
+		public ImageSource FillImageSource
+		{
+			get { return (ImageSource)this.GetValue(FillImageSourceProperty); }
+			set { this.SetValue(FillImageSourceProperty, value); }
+		}
+
+		/// <summary>
 		/// 座標配列 プロパティ
 		/// </summary>
 		public static readonly BindableProperty PositionsProperty = BindableProperty.Create(

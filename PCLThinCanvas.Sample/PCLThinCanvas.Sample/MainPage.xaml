@@ -15,9 +15,9 @@
     <tc:LineView LineColor="Blue" LineDirection="LeftToRight"/>
     <tc:LineView LineColor="Purple" LineDirection="RightToLeft"/>
     <tc:LineView LineColor="Yellow" LineCap="Square" LineWidth="3" LineStyle="Dashed" HeightRequest="1" Grid.Row="1"/>
-    <tc:SquareView LineColor="Green" FillColor="Green" Grid.Row="2"/>
-    <tc:SquareView LineColor="Red" FillColor="Pink" LineCap="Round" LineWidth="6" CornerRadiusSize="24" LineStyle="Dotted" Grid.Row="3"/>
-    <tc:EllipseView LineColor="Blue" FillColor="White" LineWidth="8" Grid.Row="4"/>
-    <tc:PolygonView x:Name="Polygon" LineColor="Purple" FillColor="Olive" LineJoin="Round" LineWidth="6" IsClosed="True" Grid.Row="5"/>
+    <tc:ImageView FillImageSource="lena_std.png" MaskImageSource="mask.png" Grid.Row="2"/>
+    <tc:SquareView LineColor="Red" FillColor="Pink" FillImageSource="lena_std.png" LineCap="Round" LineWidth="6" CornerRadiusSize="24" LineStyle="Dotted" Grid.Row="3"/>
+    <tc:EllipseView LineColor="Blue" FillColor="White" LineWidth="8" FillImageSource="lena_std.png" Grid.Row="4"/>
+    <tc:PolygonView x:Name="Polygon" LineColor="Purple" FillColor="Olive" FillImageSource="lena_std.png" LineJoin="Round" LineWidth="6" IsClosed="True" Grid.Row="5"/>
   </Grid>
 </ContentPage>

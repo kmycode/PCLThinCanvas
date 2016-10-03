@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
@@ -11,6 +11,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using PCLThinCanvas.Core;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 using static Android.Graphics.Paint;
 
 namespace PCLThinCanvas.Droid.Renderers
@@ -55,6 +57,60 @@ namespace PCLThinCanvas.Droid.Renderers
 			}
 
 			return type;
+		}
+
+		private static Dictionary<ImageSource, Bitmap> _imageSourceCache = new Dictionary<ImageSource, Bitmap>();
+
+		public static Bitmap GetBitmap(ImageSource imageSource, VisualElementRenderer<BoxView> context)
+		{
+			Bitmap bitmap = null;
+			Task.Run(async () =>
+			{
+				if (!_imageSourceCache.TryGetValue(imageSource, out bitmap))
+				{
+					IImageSourceHandler handler;
+
+					if (imageSource is FileImageSource)
+					{
+						handler = new FileImageSourceHandler();
+					}
+					else if (imageSource is StreamImageSource)
+					{
+						handler = new StreamImagesourceHandler(); // sic
+					}
+					else if (imageSource is UriImageSource)
+					{
+						handler = new ImageLoaderSourceHandler(); // sic
+					}
+					else
+					{
+						throw new NotImplementedException();
+					}
+
+					bitmap = await handler.LoadImageAsync(imageSource, context.Context);
+					_imageSourceCache.Add(imageSource, bitmap);
+				}
+			}).Wait();
+			return bitmap;
+		}
+
+		public static void DrawMaskedImage(Canvas canvas, Action<Canvas, Paint> canvasDraw, Paint paint, ImageSource imageSource, VisualElementRenderer<BoxView> context, float expand)
+		{
+			var maskPaint = new Paint(paint);
+			//maskPaint.SetXfermode(new PorterDuffXfermode(PorterDuff.Mode.DstIn));
+			var imagePaint = new Paint();
+			imagePaint.SetXfermode(new PorterDuffXfermode(PorterDuff.Mode.DstOut));
+
+			var bitmap = GetBitmap(imageSource, context);
+
+			canvasDraw(canvas, paint);
+			paint.SetXfermode(new PorterDuffXfermode(PorterDuff.Mode.SrcIn));
+			canvas.DrawBitmap(bitmap,
+				new Rect(0, 0, (int)(bitmap.Width * expand), (int)(bitmap.Height * expand)),
+				new Rect(0, 0, (int)(context.Width * expand), (int)(context.Height * expand)),
+				paint);
+			paint.SetXfermode(null);
+			canvas.Restore();
 		}
 	}
 }

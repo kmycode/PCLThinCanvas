@@ -41,9 +41,30 @@ namespace PCLThinCanvas.iOS.Renderers
 				context.SetLineWidth((nfloat)xfview.LineWidth);
 				RendererUtil.SetCap(context, xfview.LineCap);
 				RendererUtil.SetStyle(context, xfview.LineStyle, xfview.LineWidth);
-				
-				context.AddEllipseInRect(new CGRect(startx, starty, endx - startx, endy - starty));
-				context.DrawPath(CGPathDrawingMode.FillStroke);
+
+				var cgrect = new CGRect(startx, starty, endx - startx, endy - starty);
+				context.AddEllipseInRect(cgrect);
+
+				if (xfview.FillImageSource == null)
+				{
+					context.DrawPath(CGPathDrawingMode.FillStroke);
+				}
+				else
+				{
+					var fullRect = new CGRect(0, 0, xfview.Width, xfview.Height);
+					RendererUtil.DrawMaskedImage(context, fullRect, (ct) =>
+					{
+						UIColor.White.SetFill();
+						ct.FillRect(fullRect);
+						ct.SetLineWidth(0);
+						ct.SetFillColor(UIColor.Black.CGColor);
+						ct.AddEllipseInRect(fullRect);
+						ct.DrawPath(CGPathDrawingMode.FillStroke);
+					}, xfview.FillImageSource, (float)xfview.Width, (float)xfview.Height);
+
+					// ògê¸ïîï™
+					context.DrawPath(CGPathDrawingMode.Stroke);
+				}
 			}
 		}
 	}
