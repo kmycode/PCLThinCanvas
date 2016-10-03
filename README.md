@@ -8,6 +8,7 @@ This supports only following:
 |SquareView|Draw Square|
 |EllipseView|Draw Ellipse|
 |PolygonView|Draw Polygon|
+|ImageView|Draw Image|
 
 One instance draw one graphic. To combine some graphics, use overlayable class such as AbstractLayout, RelativeLayout or Grid.
 
@@ -49,22 +50,47 @@ Download nuget package.
 Install-Package KMY.PCLThinCanvas
 ```
 
+### iOS important point
+
+for iOS, insert following code in AppDelegate.cs.
+
+```csharp
+		protected PCLThinCanvas.DummyClassForLoadAssembly _dummy1
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+		}
+
+		protected PCLThinCanvas.iOS.DummyClassForLoadAssembly _dummy2
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+		}
+```
+
+
 ## Properties
 
-|-|LineView|SquareView|EllipseView|PolygonView|
-|---|---|---|---|---|
-|IsAntiAlias ※1|○|○|○|○|
-|LineColor|○|○|○|○|
-|LineWidth|○|○|○|○|
-|LineCap|○|||○|
-|LineStyle|○|○|○|○|
-|LineDirection|○||||
-|LineJoin||||○|
-|IsClosed||||○|
-|Positions||||○|
-|IsRelativePositions||||○|
-|CornerRadiusSize||○|||
-|FillColor||○|○|○|
+|-|LineView|SquareView|EllipseView|PolygonView|ImageView|
+|---|---|---|---|---|---|
+|IsAntiAlias ※1|○|○|○|○||
+|LineColor|○|○|○|○||
+|LineWidth|○|○|○|○||
+|LineCap|○|||○||
+|LineStyle|○|○|○|○||
+|LineDirection|○|||||
+|LineJoin||||○||
+|IsClosed||||○||
+|Positions||||○||
+|IsRelativePositions||||○||
+|CornerRadiusSize||○||||
+|FillColor||○|○|○||
+|FillImageSource||○|○|○|○|
+|MaskImageSource|||||○|
 
 ※1: Android only
 
@@ -143,26 +169,4 @@ default: LeftToRight
 		LeftToRight,
 		RightToLeft,
 	}
-```
-
-### iOS important point
-
-for iOS, insert following code in AppDelegate.cs.
-
-```csharp
-		protected PCLThinCanvas.DummyClassForLoadAssembly _dummy1
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
-
-		protected PCLThinCanvas.iOS.DummyClassForLoadAssembly _dummy2
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
 ```
