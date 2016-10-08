@@ -22,13 +22,35 @@ namespace PCLThinCanvas.Droid.Renderers
 {
 	class LineViewRenderer : BoxRenderer
 	{
+		private bool isDisposed = false;
+
 		protected override void OnElementChanged(ElementChangedEventArgs<BoxView> e)
 		{
 			base.OnElementChanged(e);
 			if (e.NewElement != null)
 			{
-				e.NewElement.PropertyChanged += (sender, ev) => this.Invalidate();
+				e.NewElement.PropertyChanged += this.GoInvalidate;
 			}
+			if (e.OldElement != null)
+			{
+				e.OldElement.PropertyChanged -= this.GoInvalidate;
+			}
+		}
+
+		private void GoInvalidate(object sender, EventArgs e)
+		{
+			if (!this.isDisposed)
+				this.Invalidate();
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			this.isDisposed = true;
+			if (this.Element != null)
+			{
+				this.Element.PropertyChanged -= this.GoInvalidate;
+			}
+			base.Dispose(disposing);
 		}
 
 		public override void Draw(Canvas canvas)

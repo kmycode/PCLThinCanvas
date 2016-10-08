@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>KMY.PCLThinCanvas</id>
-    <version>0.3.0</version>
+    <version>0.3.1</version>
     <title>PCLThinCanvas for Xamarin.Forms (Android/iOS)</title>
     <authors>KMY</authors>
     <owners>KMY</owners>
@@ -39,14 +39,10 @@
     <!--Core-->
     <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.dll"
           target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\PCLThinCanvas.Core.dll" />
-    <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.dll.mdb"
-          target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\PCLThinCanvas.Core.dll.mdb" />
     <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.pdb"
           target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\PCLThinCanvas.Core.pdb" />
     <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.dll"
           target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\PCLThinCanvas.dll" />
-    <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.dll.mdb"
-          target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\PCLThinCanvas.dll.mdb" />
     <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.pdb"
           target="lib\portable-net45+wp8+win8+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\PCLThinCanvas.pdb" />
 
@@ -57,14 +53,10 @@
           target="lib\MonoAndroid10\PCLThinCanvas.Droid.pdb" />
     <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.dll"
           target="lib\MonoAndroid10\PCLThinCanvas.Core.dll" />
-    <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.dll.mdb"
-          target="lib\MonoAndroid10\PCLThinCanvas.Core.dll.mdb" />
     <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.pdb"
           target="lib\MonoAndroid10\PCLThinCanvas.Core.pdb" />
     <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.dll"
           target="lib\MonoAndroid10\PCLThinCanvas.dll" />
-    <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.dll.mdb"
-          target="lib\MonoAndroid10\PCLThinCanvas.dll.mdb" />
     <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.pdb"
           target="lib\MonoAndroid10\PCLThinCanvas.pdb" />
 
@@ -77,14 +69,10 @@
           target="lib\Xamarin.iOS10\PCLThinCanvas.iOS.pdb" />
     <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.dll"
           target="lib\Xamarin.iOS10\PCLThinCanvas.Core.dll" />
-    <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.dll.mdb"
-          target="lib\Xamarin.iOS10\PCLThinCanvas.Core.dll.mdb" />
     <file src="PCLThinCanvas.Core\bin\Release\PCLThinCanvas.Core.pdb"
           target="lib\Xamarin.iOS10\PCLThinCanvas.Core.pdb" />
     <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.dll"
           target="lib\Xamarin.iOS10\PCLThinCanvas.dll" />
-    <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.dll.mdb"
-          target="lib\Xamarin.iOS10\PCLThinCanvas.dll.mdb" />
     <file src="PCLThinCanvas\bin\Release\PCLThinCanvas.pdb"
           target="lib\Xamarin.iOS10\PCLThinCanvas.pdb" />
 

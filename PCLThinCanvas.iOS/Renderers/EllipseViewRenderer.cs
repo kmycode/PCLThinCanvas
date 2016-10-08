@@ -16,13 +16,35 @@ namespace PCLThinCanvas.iOS.Renderers
 {
 	public class EllipseViewRenderer : BoxRenderer
 	{
+		private bool isDisposed = false;
+
 		protected override void OnElementChanged(ElementChangedEventArgs<BoxView> e)
 		{
 			base.OnElementChanged(e);
 			if (e.NewElement != null)
 			{
-				e.NewElement.PropertyChanged += (sender, ev) => this.SetNeedsDisplay();
+				e.NewElement.PropertyChanged += this.GoInvalidate;
 			}
+			if (e.OldElement != null)
+			{
+				e.OldElement.PropertyChanged -= this.GoInvalidate;
+			}
+		}
+
+		private void GoInvalidate(object sender, EventArgs e)
+		{
+			if (!this.isDisposed)
+				this.SetNeedsDisplay();
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			this.isDisposed = true;
+			if (this.Element != null)
+			{
+				this.Element.PropertyChanged -= this.GoInvalidate;
+			}
+			base.Dispose(disposing);
 		}
 
 		public override void Draw(CGRect rect)
